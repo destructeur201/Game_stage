@@ -21,4 +21,11 @@ def games():
 @app.route("/games", methods=['POST'])
 def create_game():
     args = request.args
-    return Response(200, "My parameters",  args).json()
+    title = args['title']
+    studio = args['studio']
+    year = args['year']
+    price = args['price']
+    stock = ['stock']
+    new = args['new']
+    game = Game(title, studio, year, price, stock, new).json()
+    return Response(200, "My parameters",  game).json()
