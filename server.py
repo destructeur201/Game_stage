@@ -1,5 +1,6 @@
 import gzip
-from flask import Flask
+from urllib import response
+from flask import Flask,request
 from models.response import Response
 from datetime import date
 from models.game import Game
@@ -16,3 +17,8 @@ games_list = [game_3, game_1, game_2] # data
 def games():
     message = "You have {} game(s).".format(len(games_list))
     return Response(200, message, games_list).json()
+
+@app.route("/games", methods=['POST'])
+def create_game():
+    args = request.args
+    return Response(200, "My parameters",  args).json()
